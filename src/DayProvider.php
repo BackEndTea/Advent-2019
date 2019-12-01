@@ -8,10 +8,15 @@ use BackEndTea\Advent\Day\Day;
 use BackEndTea\Advent\Day\DayOne;
 use LogicException;
 
+/**
+ * @psalm-immutable
+ */
 final class DayProvider
 {
     /**
      * @return Day[]
+     *
+     * @psalm-return non-empty-list<Day>
      */
     public static function provideDays(): array
     {

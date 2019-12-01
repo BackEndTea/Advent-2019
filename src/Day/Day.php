@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace BackEndTea\Advent\Day;
 
+/**
+ * @psalm-immutable
+ */
 interface Day
 {
     public function solveChallengeOne(string $input): string;

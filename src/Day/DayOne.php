@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace BackEndTea\Advent\Day;
 
+use BackEndTea\Advent\Str;
 use function array_filter;
 use function array_map;
 use function array_reduce;
@@ -11,7 +12,6 @@ use function explode;
 use function floor;
 use function is_numeric;
 use function max;
-use function str_replace;
 
 /**
  * --- Day 1: The Tyranny of the Rocket Equation ---
@@ -31,23 +31,25 @@ Fuel required to launch a given module is based on its mass. Specifically, to fi
 Fuel itself requires fuel just like a module - take its mass, divide by three, round down, and subtract 2. However, that fuel also requires fuel, and that fuel requires fuel, and so on. Any mass that would require negative fuel should instead be treated as if it requires zero fuel; the remaining mass, if any, is instead handled by wishing really hard, which has no mass and is outside the scope of this calculation.
 
 So, for each module mass, calculate its fuel and add it to the total. Then, treat the fuel amount you just calculated as the input mass and repeat the process, continuing until a fuel requirement is zero or negative. For example:
+ *
+ * @psalm-immutable
  */
-class DayOne implements Day
+final class DayOne implements Day
 {
     public function solveChallengeOne(string $input): string
     {
         $inputArray = $this->convertInputStringToArrayOfNumbers($input);
 
-        return (string) array_reduce($inputArray, function (?int $carry, int $item) {
+        return (string) array_reduce($inputArray, function (int $carry, int $item) {
             return $carry + $this->calculateFuelneededForInput($item);
-        });
+        }, 0);
     }
 
     public function solveChallengeTwo(string $input): string
     {
         $inputArray = $this->convertInputStringToArrayOfNumbers($input);
 
-        return (string) array_reduce($inputArray, function (?int $carry, int $item) {
+        return (string) array_reduce($inputArray, function (int $carry, int $item) {
             $fuel = 0;
             do {
                 $item = $this->calculateFuelneededForInput($item);
@@ -55,7 +57,7 @@ class DayOne implements Day
             } while ($item > 0);
 
             return $carry + $fuel;
-        });
+        }, 0);
     }
 
     private function calculateFuelneededForInput(int $input): int
@@ -76,7 +78,7 @@ class DayOne implements Day
 
                 return (int) $inputNumber;
             },
-            explode("\n", str_replace(["\r", "\r\n"], "\n", $input))
+            explode("\n", Str::normalizeLines($input))
         ), static function (?int $input): bool {
             return $input !== null;
         });

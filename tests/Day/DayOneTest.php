@@ -8,6 +8,7 @@ use BackEndTea\Advent\Day\Day;
 use BackEndTea\Advent\Day\DayOne;
 use BackEndTea\Advent\Test\DayTestCase;
 use Generator;
+use function file_get_contents;
 
 final class DayOneTest extends DayTestCase
 {

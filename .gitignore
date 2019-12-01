@@ -2,4 +2,4 @@
 /vendor/
 .phpunit.result.cache
 .phpcs-cache
-
+infection.log
