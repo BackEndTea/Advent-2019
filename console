@@ -1,0 +1,18 @@
+#!/usr/bin/env php
+<?php
+declare(strict_types=1);
+
+use BackEndTea\Advent\DayProvider;
+use BackEndTea\Advent\DayRunner;
+
+require_once __DIR__ . '/vendor/autoload.php';
+
+(static function(array $args){
+    if(count($args) === 2){
+        DayRunner::runDay(DayProvider::provideDay((int) $args[1] -1));
+        exit(0);
+    }
+    DayRunner::runDays(DayProvider::provideDays());
+    exit(0);
+
+})($argv);
