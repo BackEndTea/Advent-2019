@@ -20,6 +20,7 @@ final class DayOneTest extends DayTestCase
     public function provideChallengeOneCases(): Generator
     {
         yield ['12', '2'];
+        yield ['1', '0'];
         yield ["12\n12", '4'];
         yield [file_get_contents((new DayOne())->getChallengeOneFile()), '3349352'];
     }

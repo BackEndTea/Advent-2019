@@ -5,12 +5,8 @@ declare(strict_types=1);
 namespace BackEndTea\Advent\Day;
 
 use BackEndTea\Advent\Str;
-use function array_filter;
-use function array_map;
 use function array_reduce;
-use function explode;
 use function floor;
-use function is_numeric;
 use function max;
 
 /**
@@ -38,50 +34,37 @@ final class DayOne implements Day
 {
     public function solveChallengeOne(string $input): string
     {
-        $inputArray = $this->convertInputStringToArrayOfNumbers($input);
+        $inputArray = Str::turnIntoIntegerArray(Str::normalizeLines($input), "\n");
 
         return (string) array_reduce($inputArray, function (int $carry, int $item) {
-            return $carry + $this->calculateFuelneededForInput($item);
+            return $carry + $this->calculateFuelNeededForInput($item);
         }, 0);
     }
 
     public function solveChallengeTwo(string $input): string
     {
-        $inputArray = $this->convertInputStringToArrayOfNumbers($input);
+        $inputArray = Str::turnIntoIntegerArray(Str::normalizeLines($input), "\n");
 
         return (string) array_reduce($inputArray, function (int $carry, int $item) {
-            $fuel = 0;
-            do {
-                $item = $this->calculateFuelneededForInput($item);
-                $fuel += $item;
-            } while ($item > 0);
-
-            return $carry + $fuel;
+            return $carry +
+                $this->calculateFuelNeededForInputRecursive(
+                    $this->calculateFuelNeededForInput($item)
+                );
         }, 0);
     }
 
-    private function calculateFuelneededForInput(int $input): int
+    private function calculateFuelNeededForInputRecursive(int $input): int
     {
-        return (int) max(floor($input / 3) - 2, 0);
+        if ($input === 0) {
+            return 0;
+        }
+
+        return $input + $this->calculateFuelNeededForInputRecursive((int) max(floor($input / 3) - 2, 0));
     }
 
-    /**
-     * @return array<int>
-     */
-    private function convertInputStringToArrayOfNumbers(string $input): array
+    private function calculateFuelNeededForInput(int $input): int
     {
-        return array_filter(array_map(
-            static function (string $inputNumber): ?int {
-                if (! is_numeric($inputNumber)) {
-                    return null;
-                }
-
-                return (int) $inputNumber;
-            },
-            explode("\n", Str::normalizeLines($input))
-        ), static function (?int $input): bool {
-            return $input !== null;
-        });
+        return (int) max(floor($input / 3) - 2, 0);
     }
 
     public function getChallengeOneFile(): string

@@ -6,6 +6,7 @@ namespace BackEndTea\Advent;
 
 use BackEndTea\Advent\Day\Day;
 use BackEndTea\Advent\Day\DayOne;
+use BackEndTea\Advent\Day\DayTwo;
 use LogicException;
 
 /**
@@ -22,6 +23,7 @@ final class DayProvider
     {
         return [
             new DayOne(),
+            new DayTwo(),
         ];
     }
 

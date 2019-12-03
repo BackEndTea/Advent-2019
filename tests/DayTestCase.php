@@ -22,7 +22,7 @@ abstract class DayTestCase extends TestCase
     final public function testItSolvesChallengeOne(string $input, string $output): void
     {
         $day = $this->getDay();
-        $this->assertSame($day->solveChallengeOne($input), $output);
+        $this->assertSame($output, $day->solveChallengeOne($input));
     }
 
     /**
@@ -31,6 +31,6 @@ abstract class DayTestCase extends TestCase
     final public function testItSolvesChallengeTwo(string $input, string $output): void
     {
         $day = $this->getDay();
-        $this->assertSame($day->solveChallengeTwo($input), $output);
+        $this->assertSame($output, $day->solveChallengeTwo($input));
     }
 }

@@ -12,7 +12,7 @@ final class DayProviderTest extends TestCase
 {
     public function testItProvidesDays(): void
     {
-        $this->assertCount(1, DayProvider::provideDays());
+        $this->assertCount(2, DayProvider::provideDays());
     }
 
     public function testItCanProvideASingleDay(): void
