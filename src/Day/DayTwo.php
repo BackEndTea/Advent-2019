@@ -31,7 +31,7 @@ final class DayTwo implements Day
 
                 $out = $this->solve($new);
                 if (strpos($out, '19690720') === 0) {
-                    return $out;
+                    return (string) ($new[1] * 100 + $new[2]);
                 }
             }
         }
