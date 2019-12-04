@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace BackEndTea\Advent\Day;
 
 /**
- * @psalm-immutable
+ * @psalm-external-mutation-free
  */
 interface Day
 {
