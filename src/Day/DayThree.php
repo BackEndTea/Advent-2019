@@ -11,7 +11,7 @@ use function explode;
 /**
  * @psalm-external-mutation-free
  */
-class DayThree implements Day
+final class DayThree implements Day
 {
     public function solveChallengeOne(string $input): string
     {

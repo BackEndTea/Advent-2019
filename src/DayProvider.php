@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace BackEndTea\Advent;
 
 use BackEndTea\Advent\Day\Day;
+use BackEndTea\Advent\Day\DayFour;
 use BackEndTea\Advent\Day\DayOne;
 use BackEndTea\Advent\Day\DayThree;
 use BackEndTea\Advent\Day\DayTwo;
@@ -26,6 +27,7 @@ final class DayProvider
             new DayOne(),
             new DayTwo(),
             new DayThree(),
+            new DayFour(),
         ];
     }
 

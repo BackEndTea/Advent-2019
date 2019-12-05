@@ -14,7 +14,7 @@ use function substr;
 /**
  * @psalm-external-mutation-free
  */
-class Matrix
+final class Matrix
 {
     /** @var array<array<int>> */
     private $matrix = [[1]];
